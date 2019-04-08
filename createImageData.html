@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>HTML5 Canvas火焰跟随鼠标动画DEMO演示</title>
+
+    <style>
+        @import url(https://fonts.googleapis.com/css?family=Amatic+SC);
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+    </style>
+
+</head>
+
+<body>
+    <canvas id="canvas"></canvas>
+
+    <script>
+        var canvas = document.getElementById('canvas');
+        // 绘制在Canvas上
+        var context = canvas.getContext('2d');
+        var imagedata = context.createImageData(300, 150);
+        // 给对应坐标位置的数据设置色值为绿色
+        for (var x = 1; x <= 300; x += 5) {
+            for (var y = 1; y <= 150; y += 5) {
+                var index = 4 * ((y - 1) * 300 + (x - 1));
+                // 变为绿色，色值依次是0, 128, 0, 256
+                imagedata.data[index] = 0;
+                imagedata.data[index + 1] = 128;
+                imagedata.data[index + 2] = 0;
+                imagedata.data[index + 3] = 256;
+            }
+        }
+        // 再重绘
+        context.putImageData(imagedata, 0, 0);
+    </script>
+
+</body>
+
+</html>
